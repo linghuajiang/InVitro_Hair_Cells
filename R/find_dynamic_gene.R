@@ -25,23 +25,23 @@ find_dynamic_gene <- function(obj, gene_ls, trail, threshold = 0.01){
 library(CellTrails)
 library(tidyverse)
 
-Jan_obj <- readRDS("~/external_data/Jan_2021_sce_wt.mouse.utricle_805_cells.rds")
+Jan_sce <- readRDS("~/external_data/Jan_2021_sce_wt.mouse.utricle_805_cells.rds")
 
-Jan_obj <- connectStates(Jan_obj, l=7)
-Jan_obj <- fitTrajectory(Jan_obj)
+Jan_sce <- connectStates(Jan_sce, l=7)
+Jan_sce <- fitTrajectory(Jan_sce)
 
 tl <- read.ygraphml(file="~/celltrails/Jan_12states_layout.graphml")
-trajLayout(Jan_obj, adjust=TRUE) <- tl
+trajLayout(Jan_sce, adjust=TRUE) <- tl
 
-Jan_obj <- addTrail(Jan_obj, from="U1", to="H3", name="trailA")
-Jan_obj <- addTrail(Jan_obj, from="U1", to="H5", name="trailB")
+Jan_sce <- addTrail(Jan_sce, from="U1", to="H3", name="trailA")
+Jan_sce <- addTrail(Jan_sce, from="U1", to="H5", name="trailB")
 
-data <- as.matrix(Jan_obj@assays@data@listData[["logcounts"]])
+data <- as.matrix(Jan_sce@assays@data@listData[["logcounts"]])
 genes = rownames(data[apply(data,1,FUN = function(x) sum(x) != 0),])
 
-trailA_gene <- find_dynamic_gene(Jan_obj,genes,'trailA')
+trailA_gene <- find_dynamic_gene(Jan_sce,genes,'trailA')
 write.table(data.frame(x=trailA_gene),"~/Jan_trailA_dynamic_genes.txt",row.names = FALSE)
 
-trailB_gene <- find_dynamic_gene(Jan_obj,genes,'trailB')
+trailB_gene <- find_dynamic_gene(Jan_sce,genes,'trailB')
 write.table(data.frame(x=trailB_gene),"~/Jan_trailB_dynamic_genes.txt",row.names = FALSE)
 
