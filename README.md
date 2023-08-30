@@ -7,3 +7,7 @@ Inner ear organoids recapitulate development and are intended to generate cell t
 Analysis code
 ============================
 Here we include analysis code for our manuscript.
+* Seurat pipeline: Seurat pipeline is to analyze three scRNA-seq datasets derived from in vitro generated mouse inner ear organoids. Datasets of 16, 20 and 21 days-in-vitro were combined and analyzed together. We identified distinct clusters, annotated cell types for each cluster based on marker genes, and determined differentially expressed genes across various cell types.
+* scRNA-seq integration pipeline: We used Seurat to perform joint analysis of in vitro data and two in vivo scRNA-seq datasets. We co-embedded these three datasets onto the same UMAP. We followed the documentation from https://satijalab.org/seurat/articles/integration_introduction.html.
+* Celltrails pipeline: CellTrails pipeline is to determine sub-populations of in vitro generated cells. Here we focused on HCLCs and SCLCs. Following the initial clustering into 8 states, we determined the lineage identity of each state by calculating cell type specific enrichment score with SingleCellSignatureExplorer. Then, we removed cells from S8 which correspond to auditory HCs and reran clustering. This resulted in a total of 11 states. We followed the documentation from https://hellerlab.stanford.edu/celltrails/.
+* Utilities.R: Utilities.R script contains utility functions.
