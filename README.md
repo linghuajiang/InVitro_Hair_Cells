@@ -1,6 +1,6 @@
 # InVitro_Hair_Cells
 
-[![DOI](https://zenodo.org/badge/{10520180}.svg)](https://zenodo.org/badge/latestdoi/{10520180})
+[![DOI](https://zenodo.org/badge/684379404.svg)](https://zenodo.org/doi/10.5281/zenodo.10520179)
 
 Abstract
 ============================
